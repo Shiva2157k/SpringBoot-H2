@@ -1,0 +1,32 @@
+[
+  {
+    "id" : "4f2ecea7-aff9-446e-a11e-484f6e4c5518",
+    "companyCode": "FD",
+    "companyName": "Ford",
+    "ceoName": "Fazil",
+    "stockData": [{
+      "stockID": "0123",
+      "ticker":"f",
+      "quoteType":"lsd",
+      "price":"$50.56",
+      "size": "300",
+      "timeStamp": "2017-08-16 21:21:37.108"
+    }]
+  },
+  {
+    "id" : "775c76b6-e2d5-4e9d-b214-e793c3621ab0",
+    "companyCode": "GOO",
+    "companyName": "Google",
+    "ceoName": "Satya Nadella",
+    "stockData": [{
+      "stockID": "0111",
+      "ticker":"G",
+      "quoteType":"msd",
+      "price":"$70.56",
+      "size": "500",
+      "timeStamp": "2017-08-16 21:29:37.108"
+    }
+      ]
+  }
+
+  ]
