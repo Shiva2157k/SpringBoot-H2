@@ -1,7 +1,9 @@
 package com.exercise.stock.explorestocks.Services;
 
 import com.exercise.stock.explorestocks.Entity.CompanyStock;
+import com.exercise.stock.explorestocks.Entity.Stock;
 import com.exercise.stock.explorestocks.Repo.CompanyRepository;
+import com.exercise.stock.explorestocks.Repo.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +11,12 @@ import org.springframework.stereotype.Service;
 public class CompanyStockServiceImpl implements CompanyStockService{
 
     private CompanyRepository companyRepository;
+    private StockRepository stockRepository;
 
     @Autowired
-    public CompanyStockServiceImpl(CompanyRepository companyRepository) {
+    public CompanyStockServiceImpl(CompanyRepository companyRepository, StockRepository stockRepository) {
         this.companyRepository = companyRepository;
+        this.stockRepository = stockRepository;
     }
 
     public Iterable<CompanyStock> addCompanyStock(Iterable<CompanyStock>  companyStock){
@@ -28,8 +32,8 @@ public class CompanyStockServiceImpl implements CompanyStockService{
     }
 
     @Override
-    public Iterable<CompanyStock> findStocksByCompanyId(String companyId) {
+    public Iterable<Stock> findStocksByCompanyId(String companyId) {
 
-        return companyRepository.findAllByCompanyCode(companyId);
+        return stockRepository.findAllByCompany_CompanyCode(companyId);
     }
 }
