@@ -13,6 +13,8 @@ import java.io.IOException;
 public class CompanyStockServiceImpl implements CompanyStockService{
 
     private CompanyRepository companyRepository;
+
+  
     private FileWriterService fileWriterService;
 
     @Autowired
@@ -37,10 +39,12 @@ public class CompanyStockServiceImpl implements CompanyStockService{
         return companyRepository.count();
     }
 
-    @Override
-    public Iterable<CompanyStock> findStocksByCompanyId(String companyId) {
 
-        return companyRepository.findAllByCompanyCode(companyId);
+
+    @Override
+    public Iterable<String> findCompanyCodes() {
+        return companyRepository.findDistinctCompanyCode();
+ 
     }
 
 
