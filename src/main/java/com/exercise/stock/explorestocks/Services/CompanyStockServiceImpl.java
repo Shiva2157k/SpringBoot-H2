@@ -1,24 +1,34 @@
 package com.exercise.stock.explorestocks.Services;
 
 import com.exercise.stock.explorestocks.Entity.CompanyStock;
-import com.exercise.stock.explorestocks.Entity.Stock;
 import com.exercise.stock.explorestocks.Repo.CompanyRepository;
-import com.exercise.stock.explorestocks.Repo.StockRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
 
 @Service
 public class CompanyStockServiceImpl implements CompanyStockService{
 
     private CompanyRepository companyRepository;
 
+  
+    private FileWriterService fileWriterService;
+
     @Autowired
-    public CompanyStockServiceImpl(CompanyRepository companyRepository) {
+    public CompanyStockServiceImpl(CompanyRepository companyRepository, FileWriterService fileWriterService) {
         this.companyRepository = companyRepository;
+        this.fileWriterService = fileWriterService;
     }
 
     public Iterable<CompanyStock> addCompanyStock(Iterable<CompanyStock>  companyStock){
-          return  companyRepository.save(companyStock);
+
+        Iterable<CompanyStock> companyStocks = companyRepository.save(companyStock);
+        fileWriterService.fileWriter();
+
+        return  companyStocks;
     }
 
     public Iterable<CompanyStock> findCompanies(){
@@ -30,8 +40,12 @@ public class CompanyStockServiceImpl implements CompanyStockService{
     }
 
 
+
     @Override
     public Iterable<String> findCompanyCodes() {
         return companyRepository.findDistinctCompanyCode();
+ 
     }
+
+
 }
