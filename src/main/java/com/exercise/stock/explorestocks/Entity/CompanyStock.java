@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Company implements Serializable {
+public class CompanyStock implements Serializable {
 
     @Id
     private String id;
@@ -26,17 +26,17 @@ public class Company implements Serializable {
 
     public List<Stock> addstockData(){
         if(stockData==null){
-             stockData= new ArrayList<>();
-             return stockData;
+            stockData= new ArrayList<>();
+            return stockData;
         }else{
             return stockData;
         }
 
     }
 
-    public Company(){}
+    public CompanyStock(){}
 
-    public Company(String companyCode, String companyName, String ceoName){
+    public CompanyStock(String companyCode, String companyName, String ceoName){
         this.companyCode = companyCode;
         this.companyName = companyName;
         this.ceoName = ceoName;

@@ -29,11 +29,11 @@ public class Stock implements Serializable {
     @ManyToOne
     @JoinColumn(name = "companyCode", nullable = false)
     @JsonBackReference
-    private Company company;
+    private CompanyStock company;
 
     protected Stock(){}
 
-    public Stock(String stockID,String ticker,String quoteType, String price, int size, Date timeStamp, Company company){
+    public Stock(String stockID,String ticker,String quoteType, String price, int size, Date timeStamp, CompanyStock company){
 
         this.stockID = stockID;
         this.ticker = ticker;

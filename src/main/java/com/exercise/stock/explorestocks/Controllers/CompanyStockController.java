@@ -1,6 +1,6 @@
 package com.exercise.stock.explorestocks.Controllers;
 
-import com.exercise.stock.explorestocks.Entity.Company;
+import com.exercise.stock.explorestocks.Entity.CompanyStock;
 import com.exercise.stock.explorestocks.Services.CompanyStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Iterable<Company> save(@RequestBody Iterable<Company> companyStocks){
+    public Iterable<CompanyStock> save(@RequestBody Iterable<CompanyStock> companyStocks){
        return companyStockService.addCompanyStock(companyStocks);
       /*  Company company = new Company("APP","Apple","Bill Jobs");
         company.setId(UUID.randomUUID().toString());
@@ -33,12 +33,12 @@ import org.springframework.web.bind.annotation.*;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody Iterable<Company> getCompanies(){
+    public @ResponseBody Iterable<CompanyStock> getCompanies(){
         return companyStockService.findCompanies();
     }
 
     @RequestMapping(value="/{companyId}",method = RequestMethod.GET)
-    public @ResponseBody Iterable<Company> getStocksByCompanyId(@PathVariable("companyId") String companyId){
+    public @ResponseBody Iterable<CompanyStock> getStocksByCompanyId(@PathVariable("companyId") String companyId){
         return companyStockService.findStocksByCompanyId(companyId);
     }
 

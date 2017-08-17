@@ -1,7 +1,7 @@
 package com.exercise.stock.explorestocks;
 
-import com.exercise.stock.explorestocks.Entity.Company;
-import com.exercise.stock.explorestocks.Services.CompanyStockServiceImpl;
+import com.exercise.stock.explorestocks.Entity.CompanyStock;
+import com.exercise.stock.explorestocks.Services.CompanyStockService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ExplorestocksApplication implements CommandLineRunner {
 
 	@Autowired
-	private CompanyStockServiceImpl companyStockServiceImpl;
+	private CompanyStockService companyStockService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExplorestocksApplication.class, args);
@@ -25,14 +25,11 @@ public class ExplorestocksApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		TypeReference<List<Company>> mapType = new TypeReference<List<Company>>() {};
+		TypeReference<List<CompanyStock>> mapType = new TypeReference<List<CompanyStock>>() {};
 		InputStream is = TypeReference.class.getResourceAsStream("/exploreStocks.json");
 
-			List<Company> companyList = mapper.readValue(is,mapType);
-			for(Company c: companyList) {
-				companyStockServiceImpl.createCompany(c);
-				System.out.println("Successful");
-			}
+			List<CompanyStock> companyList = mapper.readValue(is,mapType);
+			companyStockService.addCompanyStock(companyList);
 		}
 	}
 
