@@ -2,19 +2,22 @@ package com.exercise.stock.explorestocks.Controllers;
 
 import com.exercise.stock.explorestocks.Entity.CompanyStock;
 import com.exercise.stock.explorestocks.Entity.Stock;
-import com.exercise.stock.explorestocks.Services.CompanyStockService;
+import com.exercise.stock.explorestocks.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/stock")
-        public class CompanyStockController {
+public class CompanyStockController {
 
     private CompanyStockService companyStockService;
+    private StockService stockService;
+
 
     @Autowired
-    public CompanyStockController(CompanyStockService companyStockService) {
+    public CompanyStockController(CompanyStockService companyStockService, StockService stockService) {
         this.companyStockService = companyStockService;
+        this.stockService = stockService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -41,7 +44,13 @@ import org.springframework.web.bind.annotation.*;
     @RequestMapping(value="/{companyId}",method = RequestMethod.GET)
     public @ResponseBody
     Iterable<Stock> getStocksByCompanyId(@PathVariable("companyId") String companyId) {
-        return companyStockService.findStocksByCompanyId(companyId);
+        return stockService.findStocksByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/companyId", method = RequestMethod.GET)
+    public @ResponseBody
+    Iterable<String> getCompanyId() {
+        return companyStockService.findCompanyCodes();
     }
 
 

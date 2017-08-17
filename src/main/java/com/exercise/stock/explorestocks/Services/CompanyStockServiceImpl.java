@@ -11,12 +11,10 @@ import org.springframework.stereotype.Service;
 public class CompanyStockServiceImpl implements CompanyStockService{
 
     private CompanyRepository companyRepository;
-    private StockRepository stockRepository;
 
     @Autowired
-    public CompanyStockServiceImpl(CompanyRepository companyRepository, StockRepository stockRepository) {
+    public CompanyStockServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
-        this.stockRepository = stockRepository;
     }
 
     public Iterable<CompanyStock> addCompanyStock(Iterable<CompanyStock>  companyStock){
@@ -31,9 +29,9 @@ public class CompanyStockServiceImpl implements CompanyStockService{
         return companyRepository.count();
     }
 
-    @Override
-    public Iterable<Stock> findStocksByCompanyId(String companyId) {
 
-        return stockRepository.findAllByCompany_CompanyCode(companyId);
+    @Override
+    public Iterable<String> findCompanyCodes() {
+        return companyRepository.findDistinctCompanyCode();
     }
 }
