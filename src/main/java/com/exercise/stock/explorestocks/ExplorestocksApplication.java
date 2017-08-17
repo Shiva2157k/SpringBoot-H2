@@ -1,7 +1,7 @@
 package com.exercise.stock.explorestocks;
 
-import com.exercise.stock.explorestocks.Domain.Company;
-import com.exercise.stock.explorestocks.Services.CompanyService;
+import com.exercise.stock.explorestocks.Entity.Company;
+import com.exercise.stock.explorestocks.Services.CompanyStockServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ExplorestocksApplication implements CommandLineRunner {
 
 	@Autowired
-	private CompanyService companyService;
+	private CompanyStockServiceImpl companyStockServiceImpl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExplorestocksApplication.class, args);
@@ -30,7 +30,7 @@ public class ExplorestocksApplication implements CommandLineRunner {
 
 			List<Company> companyList = mapper.readValue(is,mapType);
 			for(Company c: companyList) {
-				companyService.createCompany(c);
+				companyStockServiceImpl.createCompany(c);
 				System.out.println("Successful");
 			}
 		}

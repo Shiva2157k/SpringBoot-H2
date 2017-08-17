@@ -1,4 +1,4 @@
-package com.exercise.stock.explorestocks.Domain;
+package com.exercise.stock.explorestocks.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;

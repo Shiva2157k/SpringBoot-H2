@@ -1,4 +1,4 @@
-package com.exercise.stock.explorestocks.Domain;
+package com.exercise.stock.explorestocks.Entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -38,7 +37,6 @@ public class Company implements Serializable {
     public Company(){}
 
     public Company(String companyCode, String companyName, String ceoName){
-        this.id= UUID.randomUUID().toString();
         this.companyCode = companyCode;
         this.companyName = companyName;
         this.ceoName = ceoName;
