@@ -1,6 +1,7 @@
 package com.exercise.stock.explorestocks;
 
 import com.exercise.stock.explorestocks.Entity.CompanyStock;
+import com.exercise.stock.explorestocks.Exceptions.FileEmptyException;
 import com.exercise.stock.explorestocks.Services.CompanyStockService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +19,7 @@ public class ExplorestocksApplication implements CommandLineRunner {
 	@Autowired
 	private CompanyStockService companyStockService;
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(ExplorestocksApplication.class, args);
 	}
@@ -25,11 +27,17 @@ public class ExplorestocksApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		TypeReference<List<CompanyStock>> mapType = new TypeReference<List<CompanyStock>>() {};
-		InputStream is = TypeReference.class.getResourceAsStream("/exploreStocks.json");
+		try {
+            TypeReference<List<CompanyStock>> mapType = new TypeReference<List<CompanyStock>>() {
+            };
+            InputStream is = TypeReference.class.getResourceAsStream("/exploreStocks.json");
 
-			List<CompanyStock> companyList = mapper.readValue(is,mapType);
-			companyStockService.addCompanyStock(companyList);
+            List<CompanyStock> companyList = mapper.readValue(is, mapType);
+            companyStockService.addCompanyStock(companyList);
+        }
+        catch(Exception e){
+		//throw new FileEmptyException("File is Empty");
+        }
 		}
 	}
 
