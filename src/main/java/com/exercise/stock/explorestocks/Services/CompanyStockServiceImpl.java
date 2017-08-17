@@ -2,12 +2,8 @@ package com.exercise.stock.explorestocks.Services;
 
 import com.exercise.stock.explorestocks.Entity.CompanyStock;
 import com.exercise.stock.explorestocks.Repo.CompanyRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
-import java.io.IOException;
 
 @Service
 public class CompanyStockServiceImpl implements CompanyStockService{
@@ -26,7 +22,9 @@ public class CompanyStockServiceImpl implements CompanyStockService{
     public Iterable<CompanyStock> addCompanyStock(Iterable<CompanyStock>  companyStock){
 
         Iterable<CompanyStock> companyStocks = companyRepository.save(companyStock);
+        System.out.println("before");
         fileWriterService.fileWriter();
+        System.out.println("after");
 
         return  companyStocks;
     }

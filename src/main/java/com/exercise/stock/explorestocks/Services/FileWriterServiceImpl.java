@@ -26,7 +26,7 @@ public class FileWriterServiceImpl implements FileWriterService {
         ObjectMapper mapper = new ObjectMapper();
 
         try{
-            mapper.writeValue(new File("C:\\Users\\Shiva Kumar\\intelliJ_workspace\\explorestocks\\src\\main\\resources\\exploreStocks.json"),companyStocks);
+            mapper.writeValue(new File("C:\\Users\\Shiva Kumar\\intelliJ_workspace\\explorestocks\\src\\main\\resources\\exploreStocks.json"), companyStocks);
         }
         catch (IOException e) {
             e.printStackTrace();
